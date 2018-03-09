@@ -151,7 +151,7 @@ impl ContentValidator for WebInstaller {
 		let is_html = response.is_html();
 		let mime = response.content_type().unwrap_or(mime::TEXT_HTML);
 		let mut handler = StreamingHandler::new(
-			response,
+			fetch::BodyReader::new(response),
 			status,
 			mime,
 			self.embeddable_on,
